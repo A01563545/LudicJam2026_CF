@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Start constant movement immediately
-        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        groundContact = 0;
+        rb.linearVelocity = Vector2.zero;
+        rb.WakeUp();
     }
 
     void FixedUpdate()
     {
-        // Keep constant X speed (NO delay, NO smoothing)
         rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
     }
 
@@ -50,8 +50,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            GameManager.instance.RestartLevel();
+        }
+    }
+
     bool IsGrounded()
     {
         return groundContact > 0;
+    }
+
+    void OnEnable()
+    {
+        // safety reset when scene reloads
+        groundContact = 0;
     }
 }
