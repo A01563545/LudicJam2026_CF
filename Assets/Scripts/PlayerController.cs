@@ -28,19 +28,18 @@ public class PlayerController : MonoBehaviour
         if (value.isPressed)
         {
             // Solo saltamos si estamos tocando el suelo
+            // Solo salta si está tocando el suelo
             if (IsGrounded())
             {
-                print("Saltando");
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
         }
         // Se soltó el botón
+        // Al soltar botón
         else
         {
-            // Solo frenamos si el personaje todavía va subiendo en el aire
             if (rb.linearVelocity.y > 0f)
             {
-                print("No Saltando");
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
             }
         }
