@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private int groundContact = 0;
+    private Collider2D playerCollider;
+    private Collider2D pendingDeadlyCollider = null;
+    private Coroutine pendingDeadlyRoutine = null;
     
     // Variable para saber si estamos parados sobre territorio con permiso para saltar
     private bool inJumpZone = false;
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<Collider2D>();
         groundContact = 0;
         rb.linearVelocity = Vector2.zero;
         rb.WakeUp();
@@ -85,8 +89,25 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Deadly"))
         {
-            Debug.Log("El jugador ha muerto al tocar un objeto mortal.");
-            GameManager.instance.RestartLevel();
+            // Solo aplicamos la excepción si este Deadly pertenece a un obstáculo que también tiene safe zone.
+            // Un Deadly suelto debe matar siempre.
+            Collider2D safeZoneCollider = FindSiblingGroundCollider(other);
+            if (safeZoneCollider == null)
+            {
+                Debug.Log("El jugador ha muerto al tocar un objeto mortal.");
+                GameManager.instance.RestartLevel();
+            }
+            else
+            {
+                pendingDeadlyCollider = other;
+
+                if (pendingDeadlyRoutine != null)
+                {
+                    StopCoroutine(pendingDeadlyRoutine);
+                }
+
+                pendingDeadlyRoutine = StartCoroutine(ResolveSafeObstacleDeadly(safeZoneCollider));
+            }
         }
 
         if (other.CompareTag("Finish"))
@@ -120,9 +141,80 @@ public class PlayerController : MonoBehaviour
         return groundContact > 0;
     }
 
+    private bool IsAboveSafeZoneTop(Collider2D safeZoneCollider)
+    {
+        if (playerCollider == null || safeZoneCollider == null)
+        {
+            return false;
+        }
+
+        Bounds playerBounds = playerCollider.bounds;
+        Bounds safeBounds = safeZoneCollider.bounds;
+
+        // Margen pequeño para tolerar diferencias entre colliders y la simulación de física.
+        float margin = 0.05f;
+
+        return playerBounds.min.y >= safeBounds.max.y - margin;
+    }
+
+    private System.Collections.IEnumerator ResolveSafeObstacleDeadly(Collider2D safeZoneCollider)
+    {
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+
+        if (pendingDeadlyCollider == null)
+        {
+            pendingDeadlyRoutine = null;
+            yield break;
+        }
+
+        // Si tras un par de pasos de física ya estamos apoyados sobre la safe zone,
+        // cancelamos la muerte. Si no, es una colisión lateral real con el deadly.
+        bool touchingSafe = false;
+        if (playerCollider != null && safeZoneCollider != null)
+        {
+            touchingSafe = playerCollider.IsTouching(safeZoneCollider);
+        }
+
+        if (!touchingSafe)
+        {
+            Debug.Log("El jugador ha muerto al tocar un objeto mortal.");
+            GameManager.instance.RestartLevel();
+        }
+
+        pendingDeadlyCollider = null;
+        pendingDeadlyRoutine = null;
+    }
+
+    private Collider2D FindSiblingGroundCollider(Collider2D deadlyCollider)
+    {
+        if (deadlyCollider == null)
+        {
+            return null;
+        }
+
+        Transform parent = deadlyCollider.transform.parent;
+        if (parent == null)
+        {
+            return null;
+        }
+
+        foreach (Transform child in parent)
+        {
+            if (child != deadlyCollider.transform && child.CompareTag("Ground"))
+            {
+                return child.GetComponent<Collider2D>();
+            }
+        }
+
+        return null;
+    }
+
     void OnEnable()
     {
         groundContact = 0;
+        pendingDeadlyCollider = null;
+        pendingDeadlyRoutine = null;
     }
 
     private System.Collections.IEnumerator PulseRoutine(Transform t)
