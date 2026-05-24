@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
         groundContact = 0;
         rb.linearVelocity = Vector2.zero;
         rb.WakeUp();
@@ -38,7 +37,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            groundContact++;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (contact.normal.y > 0.5f)
+                {
+                    groundContact++;
+                    break;
+                }
+            }
         }
     }
 
@@ -46,15 +52,24 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            groundContact--;
+            groundContact = Mathf.Max(0, groundContact - 1);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Obstacle"))
+
+        Debug.Log("Trigger hit: " + other.gameObject.name + " tag: " + other.tag);
+        
+        if (other.CompareTag("Deadly"))
         {
+            Debug.Log("El jugador ha muerto al tocar un objeto mortal.");
             GameManager.instance.RestartLevel();
+        }
+
+        if (other.CompareTag("Finish"))
+        {
+            GameManager.instance.WinLevel();
         }
     }
 
@@ -65,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        // safety reset when scene reloads
         groundContact = 0;
     }
 }
