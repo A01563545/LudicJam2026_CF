@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 12f;
+    public float jumpForce = 30f;
 
     private Rigidbody2D rb;
     private int groundContact = 0;
@@ -24,12 +24,25 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (!value.isPressed)
-            return;
-
-        if (IsGrounded())
+        // Se presionó el botón
+        if (value.isPressed)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            // Solo saltamos si estamos tocando el suelo
+            if (IsGrounded())
+            {
+                print("Saltando");
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            }
+        }
+        // Se soltó el botón
+        else
+        {
+            // Solo frenamos si el personaje todavía va subiendo en el aire
+            if (rb.linearVelocity.y > 0f)
+            {
+                print("No Saltando");
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+            }
         }
     }
 
