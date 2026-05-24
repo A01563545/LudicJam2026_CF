@@ -23,7 +23,10 @@ public class SwitchScript : MonoBehaviour
     public Color colorIndicadorVerde = Color.green; 
 
     private bool playerInZone = false;
-    private bool hasVisitedThisZone = false; // Permite un solo uso hasta que salgas y entres
+    private bool hasVisitedThisZone = false; // Permite un solo uso hasta que salgas y entres    
+    // Corrutina para el efecto de palpito
+    private Coroutine pulseCoroutine;
+    private Vector3 baseScale;
 
     void Awake()
     {
@@ -43,6 +46,11 @@ public class SwitchScript : MonoBehaviour
 
     void Start()
     {
+        if (indicadorSprite != null)
+        {
+            baseScale = indicadorSprite.transform.localScale;
+        }
+
         // YA NO forzamos ningún estado de Activar/Desactivar en el Start. 
         // Respetaremos al 100% como los hayas dejado (prendidos o apagados) en tu jerarquía.
         
@@ -62,6 +70,9 @@ public class SwitchScript : MonoBehaviour
             
             // Marcamos como usado para que no puedas "spamear"
             hasVisitedThisZone = true;
+            
+            // Efecto visual: hacemos crecer el indicador un momento
+            HacerPalpitarIndicador();
 
             // Invertimos físicamente el estado actual (sea cual sea) de cada objeto
             invertColor(verdeObjects);
@@ -124,5 +135,42 @@ public class SwitchScript : MonoBehaviour
                 obj.SetActive(!obj.activeSelf);
             }
         }
+    }
+
+    private void HacerPalpitarIndicador()
+    {
+        if (indicadorSprite == null) return;
+        
+        if (pulseCoroutine != null) StopCoroutine(pulseCoroutine);
+        pulseCoroutine = StartCoroutine(PulseRoutine());
+    }
+
+    private System.Collections.IEnumerator PulseRoutine()
+    {
+        Transform t = indicadorSprite.transform;
+        Vector3 originalScale = baseScale;               // Usamos la escala original guardada en el Start
+        Vector3 targetScale = originalScale * 1.7f;      // Ajustado al 130% para que no crezca tanto
+
+        float duration = 0.15f;
+        float elapsed = 0f;
+
+        // Crecer
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            t.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / duration);
+            yield return null;
+        }
+
+        // Encoger
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            t.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / duration);
+            yield return null;
+        }
+
+        t.localScale = originalScale;
     }
 }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     
     // Variable para saber si estamos parados sobre territorio con permiso para saltar
     private bool inJumpZone = false;
+    private Collider2D currentJumpZoneCollider = null;
 
     void Start()
     {
@@ -36,8 +37,12 @@ public class PlayerController : MonoBehaviour
             if (IsGrounded() && inJumpZone)
             {
                 print("Saltando desde JumpZone permitida");
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            }
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);                
+                // Efecto visual: hacemos crecer el objeto de la zona de salto
+                if (currentJumpZoneCollider != null)
+                {
+                    StartCoroutine(PulseRoutine(currentJumpZoneCollider.transform));
+                }            }
         }
         // Al soltar botón
         else
@@ -93,6 +98,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("JumpZone"))
         {
             inJumpZone = true;
+            currentJumpZoneCollider = other;
         }
     }
 
@@ -102,6 +108,10 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("JumpZone"))
         {
             inJumpZone = false;
+            if (currentJumpZoneCollider == other)
+            {
+                currentJumpZoneCollider = null;
+            }
         }
     }
 
@@ -113,5 +123,48 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         groundContact = 0;
+    }
+
+    private System.Collections.IEnumerator PulseRoutine(Transform t)
+    {
+        // Buscamos si el collider tiene un hijo que sea el Sprite a escalar (igual que en los switches)
+        // Si no tiene hijo, escalará el propio Trigger
+        Transform targetToScale = t;
+        SpriteRenderer sr = t.GetComponentInChildren<SpriteRenderer>();
+        if (sr != null) 
+        {
+            targetToScale = sr.transform;
+        }
+
+        // Si prefieres guardar el tamaño inicial de las zonas, pero por ahora tomamos su tamaño de inicio.
+        Vector3 originalScale = targetToScale.localScale;
+        Vector3 targetScale = originalScale * 1.7f; // Reducido también al 130%
+
+        float duration = 0.15f;
+        float elapsed = 0f;
+
+        // Inflarse
+        while (elapsed < duration)
+        {
+            if (targetToScale == null) yield break; // Seguridad por si la zona se destruye
+            elapsed += Time.deltaTime;
+            targetToScale.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / duration);
+            yield return null;
+        }
+
+        // Desinflarse
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            if (targetToScale == null) yield break;
+            elapsed += Time.deltaTime;
+            targetToScale.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / duration);
+            yield return null;
+        }
+
+        if (targetToScale != null)
+        {
+            targetToScale.localScale = originalScale;
+        }
     }
 }
