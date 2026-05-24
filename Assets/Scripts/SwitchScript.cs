@@ -15,7 +15,7 @@ public class SwitchScript : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
             Debug.Log("El jugador tocó el Switch presionando Espacio");
             if (Verde != null) Verde.SetActive(true);
