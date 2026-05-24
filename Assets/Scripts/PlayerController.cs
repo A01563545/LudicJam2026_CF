@@ -27,17 +27,16 @@ public class PlayerController : MonoBehaviour
         // Se presionó el botón
         if (value.isPressed)
         {
-            // Solo saltamos si estamos tocando el suelo
             // Solo salta si está tocando el suelo
             if (IsGrounded())
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
         }
-        // Se soltó el botón
         // Al soltar botón
         else
         {
+            // Aún va subiendo
             if (rb.linearVelocity.y > 0f)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
@@ -72,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
 
         Debug.Log("Trigger hit: " + other.gameObject.name + " tag: " + other.tag);
-        
+
         if (other.CompareTag("Deadly"))
         {
             Debug.Log("El jugador ha muerto al tocar un objeto mortal.");
