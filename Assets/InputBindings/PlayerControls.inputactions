@@ -41,7 +41,7 @@
                     "name": "",
                     "id": "73caea76-41f4-4f2e-b339-fa82c564ef3b",
                     "path": "<Keyboard>/upArrow",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",

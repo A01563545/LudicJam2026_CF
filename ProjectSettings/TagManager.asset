@@ -6,15 +6,10 @@ TagManager:
   tags:
   - Ground
   - Obstacle
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+  - Deadly
   - JumpZone
-=======
-  - Deadly
->>>>>>> Stashed changes
-=======
-  - Deadly
->>>>>>> Stashed changes
+  - ColorAzul
+  - ColorVerde
   layers:
   - Default
   - TransparentFX
