@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private int groundContact = 0;
+    
+    // Variable para saber si estamos parados sobre territorio con permiso para saltar
+    private bool inJumpZone = false;
 
     void Start()
     {
@@ -27,9 +30,12 @@ public class PlayerController : MonoBehaviour
         // Se presionó el botón
         if (value.isPressed)
         {
-            // Solo salta si está tocando el suelo
-            if (IsGrounded())
+            // EL JUGADOR SOLO PUEDE SALTAR SI ESTÁ:
+            // 1. Tocando el piso (IsGrounded)
+            // 2. Y ADEMÁS físicamente metido dentro de una zona "JumpZone"
+            if (IsGrounded() && inJumpZone)
             {
+                print("Saltando desde JumpZone permitida");
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
         }
@@ -81,6 +87,21 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             GameManager.instance.WinLevel();
+        }
+
+        // Detectar entrada a la zona donde SÍ ES LEGAL saltar
+        if (other.CompareTag("JumpZone"))
+        {
+            inJumpZone = true;
+        }
+    }
+
+    // Usamos OnTriggerExit2D para saber cuándo sales de la zona legal de salto
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("JumpZone"))
+        {
+            inJumpZone = false;
         }
     }
 
