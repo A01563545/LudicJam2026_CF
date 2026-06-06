@@ -15,11 +15,11 @@ public class SoundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            playJumpSound();
+            //playJumpSound();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playSwitchSound();
+            //playSwitchSound();
         }
     }
 
