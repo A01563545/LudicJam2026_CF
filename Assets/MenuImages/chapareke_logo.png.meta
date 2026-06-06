@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 23a2a42d1d914f3428451b29573d0925
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2907501684699584214
+    second: chapareke_logo_0
+  - first:
+      213: 925214250000894585
+    second: chapareke_logo_1
+  - first:
+      213: -7568914387606047111
+    second: chapareke_logo_2
+  - first:
+      213: 752899800645377126
+    second: chapareke_logo_3
+  - first:
+      213: 7699351733111947518
+    second: chapareke_logo_4
+  - first:
+      213: -5781856503569925443
+    second: chapareke_logo_5
+  - first:
+      213: 7475930903966798647
+    second: chapareke_logo_6
+  - first:
+      213: 890101493073989186
+    second: chapareke_logo_7
+  - first:
+      213: -4630128682851037402
+    second: chapareke_logo_8
+  - first:
+      213: -3476979582782087835
+    second: chapareke_logo_9
+  - first:
+      213: 193005242801512934
+    second: chapareke_logo_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 277, z: 0, w: 388}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: chapareke_logo_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 425
+        width: 1517
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d65e5ca065895820800000000000000
+      internalID: 2907501684699584214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_1
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 467
+        width: 142
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ace68557507dc00800000000000000
+      internalID: 925214250000894585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_2
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 470
+        width: 133
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976f56f5770d5f690800000000000000
+      internalID: -7568914387606047111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_3
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 470
+        width: 158
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c1ee03166d27a00800000000000000
+      internalID: 752899800645377126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_4
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 470
+        width: 124
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef00decbb9799da60800000000000000
+      internalID: 7699351733111947518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_5
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 470
+        width: 157
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbabe62c428b2cfa0800000000000000
+      internalID: -5781856503569925443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_6
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 470
+        width: 138
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7335e484c87dfb760800000000000000
+      internalID: 7475930903966798647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_7
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 470
+        width: 119
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24e48bc87964a5c00800000000000000
+      internalID: 890101493073989186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_8
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 470
+        width: 138
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f01529e7a7ebfb0800000000000000
+      internalID: -4630128682851037402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_9
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 470
+        width: 119
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ddcf4cd794fbfc0800000000000000
+      internalID: -3476979582782087835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chapareke_logo_10
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 288
+        width: 1504
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e1e8f8ee31bda200800000000000000
+      internalID: 193005242801512934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      chapareke_logo_0: 2907501684699584214
+      chapareke_logo_1: 925214250000894585
+      chapareke_logo_10: 193005242801512934
+      chapareke_logo_2: -7568914387606047111
+      chapareke_logo_3: 752899800645377126
+      chapareke_logo_4: 7699351733111947518
+      chapareke_logo_5: -5781856503569925443
+      chapareke_logo_6: 7475930903966798647
+      chapareke_logo_7: 890101493073989186
+      chapareke_logo_8: -4630128682851037402
+      chapareke_logo_9: -3476979582782087835
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
